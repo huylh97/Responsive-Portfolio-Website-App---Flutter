@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_profile/responsive.dart';
 
 import '../../../constants.dart';
 
@@ -28,24 +29,33 @@ class HomeBanner extends StatelessWidget {
               children: [
                 Text(
                   "Discover my Amazing \nArt Space!",
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                  style: Responsive.isDesktop(context)
+                      ? Theme.of(context).textTheme.headline3!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )
+                      : Theme.of(context).textTheme.headline5!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                 ),
+                if (!Responsive.isMobileLarge(context))
+                  const SizedBox(height: defaultPadding / 2),
                 MyBuildAnimatedText(),
                 const SizedBox(height: defaultPadding),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                    backgroundColor: primaryColor,
-                  ),
-                  child: Text(
-                    "EXPLORE NOW",
-                    style: TextStyle(color: darkColor),
-                  ),
-                )
+                if (!Responsive.isMobileLarge(context))
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      backgroundColor: primaryColor,
+                    ),
+                    child: Text(
+                      "EXPLORE NOW",
+                      style: TextStyle(color: darkColor),
+                    ),
+                  )
               ],
             ),
           )
@@ -63,11 +73,13 @@ class MyBuildAnimatedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-        style: Theme.of(context).textTheme.subtitle1!,
+        style: Responsive.isMobile(context)
+            ? Theme.of(context).textTheme.subtitle2!
+            : Theme.of(context).textTheme.subtitle1!,
         child: Row(
           children: [
-            FlutterCodeText(),
-            const SizedBox(width: 8),
+            if (!Responsive.isMobileLarge(context)) FlutterCodeText(),
+            if (!Responsive.isMobileLarge(context)) const SizedBox(width: 8),
             Text("I build "),
             AnimatedTextKit(
               animatedTexts: [
@@ -76,7 +88,7 @@ class MyBuildAnimatedText extends StatelessWidget {
                 TypewriterAnimatedText('Flutter with socket-io app.'),
               ],
             ),
-            FlutterCodeText(),
+            if (!Responsive.isMobileLarge(context)) FlutterCodeText(),
           ],
         ));
   }
@@ -91,6 +103,7 @@ class FlutterCodeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
+        style: TextStyle(color: Colors.white),
         children: const <TextSpan>[
           TextSpan(text: '<'),
           TextSpan(text: 'flutter', style: TextStyle(color: primaryColor)),
