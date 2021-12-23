@@ -10,12 +10,12 @@ class HomeBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 3,
+      aspectRatio: Responsive.isMobile(context) ? 2 : 3,
       child: Stack(
         fit: StackFit.expand,
         children: [
           Image.asset(
-            "assets/images/bg.jpeg",
+            "assets/images/banner.jpeg",
             fit: BoxFit.cover,
           ),
           Container(
@@ -28,7 +28,7 @@ class HomeBanner extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Discover my Amazing \nArt Space!",
+                  "Objective",
                   style: Responsive.isDesktop(context)
                       ? Theme.of(context).textTheme.headline3!.copyWith(
                             fontWeight: FontWeight.bold,
@@ -41,7 +41,11 @@ class HomeBanner extends StatelessWidget {
                 ),
                 if (!Responsive.isMobileLarge(context))
                   const SizedBox(height: defaultPadding / 2),
+                FlutterCodeText(),
+                const SizedBox(height: 8),
                 MyBuildAnimatedText(),
+                const SizedBox(height: 8),
+                FlutterCodeText(),
                 const SizedBox(height: defaultPadding),
                 if (!Responsive.isMobileLarge(context))
                   ElevatedButton(
@@ -76,20 +80,24 @@ class MyBuildAnimatedText extends StatelessWidget {
         style: Responsive.isMobile(context)
             ? Theme.of(context).textTheme.subtitle2!
             : Theme.of(context).textTheme.subtitle1!,
-        child: Row(
-          children: [
-            if (!Responsive.isMobileLarge(context)) FlutterCodeText(),
-            if (!Responsive.isMobileLarge(context)) const SizedBox(width: 8),
-            Text("I build "),
-            AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText('Responsive web and mobile app.'),
-                TypewriterAnimatedText('Complete portfolip web ui.'),
-                TypewriterAnimatedText('Flutter with socket-io app.'),
-              ],
-            ),
-            if (!Responsive.isMobileLarge(context)) FlutterCodeText(),
-          ],
+        child: SizedBox(
+          width: 400,
+          child: AnimatedTextKit(
+            stopPauseOnTap: true,
+            totalRepeatCount: 5,
+            animatedTexts: [
+              TypewriterAnimatedText(
+                  'With 1+ years of experience in mobile application development,'),
+              TypewriterAnimatedText(
+                  'Looking for a suitable job role in Mobile Developer '),
+              TypewriterAnimatedText(
+                  'where I can apply my technical skills in coding and software design'),
+              TypewriterAnimatedText(
+                  'to fulfil the clients’ particular requirements and augment the reputation of the company '),
+              TypewriterAnimatedText(
+                  'and help advance my career progression to senior positions in the future.')
+            ],
+          ),
         ));
   }
 }
@@ -106,7 +114,7 @@ class FlutterCodeText extends StatelessWidget {
         style: TextStyle(color: Colors.white),
         children: const <TextSpan>[
           TextSpan(text: '<'),
-          TextSpan(text: 'flutter', style: TextStyle(color: primaryColor)),
+          TextSpan(text: 'Writing', style: TextStyle(color: primaryColor)),
           TextSpan(text: '>'),
         ],
       ),

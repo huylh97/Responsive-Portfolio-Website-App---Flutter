@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_profile/components/animated_progress_indicator.dart';
-import 'package:flutter_profile/constants.dart';
 
 class Skills extends StatelessWidget {
   const Skills({
@@ -13,32 +12,29 @@ class Skills extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-          child: Text("Skills", style: Theme.of(context).textTheme.subtitle2),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Text("Technical Skills",
+              style: Theme.of(context).textTheme.subtitle1),
         ),
-        Row(
-          children: [
-            Expanded(
-              child: AnimatedCircularProgressIndicator(
-                percentage: 0.8,
-                label: "Coding",
-              ),
-            ),
-            SizedBox(width: defaultPadding),
-            Expanded(
-              child: AnimatedCircularProgressIndicator(
-                percentage: 0.7,
-                label: "English",
-              ),
-            ),
-            SizedBox(width: defaultPadding),
-            Expanded(
-              child: AnimatedCircularProgressIndicator(
-                percentage: 0.5,
-                label: "Teamwork",
-              ),
-            ),
-          ],
+        AnimatedLinearProgressIndicator(
+          percentage: 0.8,
+          label: "Flutter",
+        ),
+        AnimatedLinearProgressIndicator(
+          percentage: 0.6,
+          label: "Swift",
+        ),
+        AnimatedLinearProgressIndicator(
+          percentage: 0.5,
+          label: "Java",
+        ),
+        AnimatedLinearProgressIndicator(
+          percentage: 0.8,
+          label: "MVC/MVVM",
+        ),
+        AnimatedLinearProgressIndicator(
+          percentage: 0.6,
+          label: "Git",
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_profile/responsive.dart';
 
 import '../../../constants.dart';
 
@@ -11,39 +12,73 @@ class HighLightInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: defaultPadding),
-      child: Wrap(
-        spacing: 30,
-        children: [
-          HighLight(
-            counter: AnimatedCounter(
-              value: 119,
-              text: "k+",
+      child: Responsive.isMobile(context)
+          ? Wrap(
+              spacing: 30,
+              children: [
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 119,
+                    text: "k+",
+                  ),
+                  label: "Subcribers",
+                ),
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 100,
+                    text: "+",
+                  ),
+                  label: "Videos",
+                ),
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 15,
+                    text: "+",
+                  ),
+                  label: "Projects",
+                ),
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 10,
+                    text: "+",
+                  ),
+                  label: "Stars",
+                ),
+              ],
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 119,
+                    text: "k+",
+                  ),
+                  label: "Subcribers",
+                ),
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 100,
+                    text: "+",
+                  ),
+                  label: "Videos",
+                ),
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 15,
+                    text: "+",
+                  ),
+                  label: "Projects",
+                ),
+                HighLight(
+                  counter: AnimatedCounter(
+                    value: 10,
+                    text: "+",
+                  ),
+                  label: "Stars",
+                ),
+              ],
             ),
-            label: "Subcribers",
-          ),
-          HighLight(
-            counter: AnimatedCounter(
-              value: 100,
-              text: "+",
-            ),
-            label: "Videos",
-          ),
-          HighLight(
-            counter: AnimatedCounter(
-              value: 15,
-              text: "+",
-            ),
-            label: "Projects",
-          ),
-          HighLight(
-            counter: AnimatedCounter(
-              value: 10,
-              text: "+",
-            ),
-            label: "Stars",
-          ),
-        ],
-      ),
     );
   }
 }

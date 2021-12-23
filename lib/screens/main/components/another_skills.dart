@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants.dart';
 
-class Knowledges extends StatelessWidget {
-  const Knowledges({
+class AnotherSkills extends StatelessWidget {
+  const AnotherSkills({
     Key? key,
   }) : super(key: key);
 
@@ -14,17 +14,15 @@ class Knowledges extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(
-              vertical: defaultPadding),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
-            "Knowledges",
-            style: Theme.of(context).textTheme.subtitle2,
+            "Another Skills",
+            style: Theme.of(context).textTheme.subtitle1,
           ),
         ),
-        KnowledgeText(text: "Flutter, Dart"),
-        KnowledgeText(text: "Stylus, Sass, Less"),
-        KnowledgeText(text: "Gulp, Webpack, Grunt"),
-        KnowledgeText(text: "GIT Knowledge"),
+        KnowledgeText(text: "English"),
+        KnowledgeText(text: "Communication"),
+        KnowledgeText(text: "Teamwork"),
       ],
     );
   }
@@ -34,9 +32,13 @@ class KnowledgeText extends StatelessWidget {
   const KnowledgeText({
     Key? key,
     required this.text,
+    this.onTap,
+    this.subText = "",
   }) : super(key: key);
 
   final String text;
+  final String? subText;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,15 @@ class KnowledgeText extends StatelessWidget {
           SvgPicture.asset("assets/icons/check.svg"),
           SizedBox(width: defaultPadding / 2),
           Text(text),
+          onTap == null
+              ? SizedBox()
+              : InkWell(
+                  onTap: onTap,
+                  child: Text(
+                    subText!,
+                    style: TextStyle(decoration: TextDecoration.underline),
+                  ),
+                )
         ],
       ),
     );
