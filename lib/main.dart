@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'My Profile',
       theme: ThemeData.dark().copyWith(
         primaryColor: primaryColor,
         scaffoldBackgroundColor: bgColor,
